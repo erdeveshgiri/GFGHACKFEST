@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Store - Quick Delivery</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f4f6;
+        }
+        header {
+            background-color: #2196F3;
+            padding: 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .cart {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            position: relative;
+        }
+        .cart-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: 0;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+        }
+        .btn-main11 {
+            margin: 10px;
+            padding: 10px 15px;
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-main11:hover {
+            background-color: #d32f2f;
+        }
+        .container {
+            width: 80vw;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .search-bar button:hover {
+            background-color: #d32f2f;
+        }
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+        .categories .category {
+            padding: 20px;
+            background-color: #e3f2fd;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            flex: 1;
+            margin: 0 10px;
+        }
+        .categories .category:hover {
+            background-color: #bbdefb;
+        }
+        .categories .category h3 {
+            margin: 0;
+        }
+        .upload-section {
+            margin-bottom: 30px;
+        }
+        .upload-section h2 {
+            margin-bottom: 10px;
+        }
+        .upload-section input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+        .med-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+        .med-item {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .med-item:hover {
+            transform: translateY(-5px);
+        }
+        .med-item img {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+        .med-item h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .med-item button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .med-item button:hover {
+            background-color: #388e3c;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2196F3;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Quick Medical Delivery</h1>
+    <div class="cart">
+        <img src="https://img.icons8.com/material-rounded/24/ffffff/shopping-cart.png" alt="Cart" class="cart-icon">
+        <span>Cart</span>
+        <span class="cart-count">0</span>
+    </div>
+    <a href="index.html" class="btn-main11">Go to Main Page</a>
+</header>
+
+<div class="container">
+    <div class="search-bar">
+        <input type="text" placeholder="Search for medicine, categories, or upload prescription">
+        <button>Search</button>
+    </div>
+
+    <div class="categories">
+        <div class="category">
+            <h3>Pain Relief</h3>
+        </div>
+        <div class="category">
+            <h3>Diabetes Care</h3>
+        </div>
+        <div class="category">
+            <h3>Heart Care</h3>
+        </div>
+        <div class="category">
+            <h3>Skin Care</h3>
+        </div>
+        <div class="category">
+            <h3>Vitamins & Supplements</h3>
+        </div>
+    </div>
+
+    <div class="upload-section">
+        <h2>Upload Your Prescription</h2>
+        <input type="file" id="prescription-upload">
+    </div>
+
+    <div class="med-list">
+        <div class="med-item">
+            <img src="https://via.placeholder.com/100" alt="Medicine">
+            <h3>Medicine 1</h3>
+            <button>Add to Cart</button>
+        </div>
+        <div class="med-item">
+            <img src="https://via.placeholder.com/100" alt="Medicine">
+            <h3>Medicine 2</h3>
+            <button>Add to Cart</button>
+        </div>
+        <div class="med-item">
+            <img src="https://via.placeholder.com/100" alt="Medicine">
+            <h3>Medicine 3</h3>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 Quick Medical Delivery
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Section</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 80vw;
+            max-width: 1000px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #f44336;
+        }
+        .location {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 6px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 6px solid #f44336;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .video-section {
+            margin-top: 30px;
+        }
+        .video-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: #555;
+        }
+        .btn-refresh, .btn-main {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn-refresh:hover {
+            background-color: #d32f2f;
+        }
+        .btn-main {
+            background-color: #2196F3;
+        }
+        .btn-main:hover {
+            background-color: #1976d2;
+        }
+        .button-group {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Emergency Section</h1>
+    <p class="location" id="location">Fetching your current location...</p>
+    <div class="loader" id="loader"></div>
+    
+    <div class="video-section">
+        <h2>Connecting to the nearest available doctor...</h2>
+        <div class="video-placeholder" id="video-placeholder">
+            Video Conference will appear here.
+        </div>
+    </div>
+
+    <!-- Button Group for Refresh and Go to Main Section -->
+    <div class="button-group">
+        <button class="btn-refresh" onclick="window.location.reload();">Refresh</button>
+        <a href="index.html" class="btn-main">Go to Main Section</a>
+    </div>
+</div>
+
+<script>
+    // Fetch user's current location
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    // Display user's current position
+    function showPosition(position) {
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        document.getElementById("location").innerHTML = `Your current location: Latitude ${lat}, Longitude ${lon}`;
+        document.getElementById("loader").style.display = 'none';
+
+        // You can use this latitude and longitude to connect to a hospital's API
+        // For example: send the location to the backend to find the nearest hospital
+        // connectToNearestDoctor(lat, lon);
+    }
+
+    // Handle errors from geolocation
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                document.getElementById("location").innerHTML = "User denied the request for Geolocation.";
+                break;
+            case error.POSITION_UNAVAILABLE:
+                document.getElementById("location").innerHTML = "Location information is unavailable.";
+                break;
+            case error.TIMEOUT:
+                document.getElementById("location").innerHTML = "The request to get user location timed out.";
+                break;
+            case error.UNKNOWN_ERROR:
+                document.getElementById("location").innerHTML = "An unknown error occurred.";
+                break;
+        }
+        document.getElementById("loader").style.display = 'none';
+    }
+
+    // Call getLocation on page load
+    window.onload = getLocation;
+
+    // Placeholder function for connecting to nearest doctor
+    function connectToNearestDoctor(lat, lon) {
+        // This is where you would integrate with a hospital API or a WebRTC video service
+        // For example, using WebRTC or Twilio for video conferencing based on location
+        document.getElementById("video-placeholder").innerHTML = "Connecting to a doctor at the nearest hospital...";
+    }
+</script>
+
+</body>
+</html>
